@@ -1,20 +1,33 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { GlobalProviders } from "~/providers/global";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Streamyst",
-  description: "Media Forwarding",
+  title: {
+    default: "ChaiForm — Build Beautiful Forms",
+    template: "%s | ChaiForm",
+  },
+  description:
+    "Create stunning, themed forms in minutes. Collect responses, analyze data, and share with the world — no login required for respondents.",
+  keywords: ["form builder", "typeform alternative", "surveys", "analytics", "no-code"],
+  openGraph: {
+    title: "ChaiForm — Build Beautiful Forms",
+    description: "Create stunning, themed forms in minutes.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <GlobalProviders>{children}</GlobalProviders>
       </body>
     </html>
